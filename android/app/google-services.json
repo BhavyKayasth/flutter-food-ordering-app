@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "723921551698",
+    "project_id": "fooddelivery-login-n-db",
+    "storage_bucket": "fooddelivery-login-n-db.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723921551698:android:05d7e10e6473945410ba8b",
+        "android_client_info": {
+          "package_name": "com.example.fooddelivery"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWv2GmhITn4K51lxiaOrlbAdSBzOKhItA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

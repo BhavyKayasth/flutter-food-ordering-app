@@ -1,0 +1,31 @@
+buildscript {
+    ext.kotlin_version = '1.9.24'
+    repositories {
+        google()  // Make sure this is included
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.7.3' // Updated to support Gradle 8.0 and SDK 34
+        classpath 'com.google.gms:google-services:4.4.2' // Add this line to apply google services plugin
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24" // Updated Kotlin version
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.buildDir = "../build"
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(":app")
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,81 @@
+plugins {
+    id "com.android.application"
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services' // Firebase services
+    // END: FlutterFire Configuration
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader("UTF-8") { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterVersionCode = localProperties.getProperty("flutter.versionCode")
+if (flutterVersionCode == null) {
+    flutterVersionCode = "1"
+}
+
+def flutterVersionName = localProperties.getProperty("flutter.versionName")
+if (flutterVersionName == null) {
+    flutterVersionName = "1.0"
+}
+
+android {
+    compileSdk = 34  // Set to 34 to match Firebase and Kotlin requirements
+    namespace = "com.example.fooddelivery"
+    ndkVersion = "27.0.12077973"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        // Application ID for your app
+        applicationId = "com.example.fooddelivery"
+        // Set the SDK versions (updated for Firebase compatibility)
+        minSdkVersion 23  // Set to 23 or higher as required by Firebase
+        targetSdkVersion 33  // Updated to target SDK version 34
+        compileSdkVersion 34  // Updated to compile against SDK version 34
+        versionCode = flutterVersionCode.toInteger()
+        versionName = flutterVersionName
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            // Use debug signing config for release build
+            signingConfig = signingConfigs.debug
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+dependencies {
+    // Import the Firebase BoM (Bill of Materials) to manage versions
+    implementation platform("com.google.firebase:firebase-bom:33.7.0")
+
+    // Add Firebase Analytics and other Firebase services as needed
+    implementation "com.google.firebase:firebase-analytics"
+    // Add any additional Firebase libraries you need
+    // For example:
+
+    implementation "com.google.firebase:firebase-auth"
+//    implementation "com.google.firebase:firebase-core"
+    // implementation "com.google.firebase:firebase-firestore"
+    implementation 'androidx.multidex:multidex:2.0.1'
+}
